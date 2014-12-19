@@ -89,7 +89,8 @@ public class GroupMessageWorker implements JobWorker
 			pushMsg.put("group_id", message.getGroupId());
 			pushMsg.put("from_uid", message.getFromUserId());
 			///添加到push queue
-			pushRedis.put(pushMsg.toString());GlobalObject.INFO_LOG.info("GroupMessageWorker add push queue message:" + pushMsg.toString());
+			pushRedis.put(pushMsg.toString());
+			GlobalObject.INFO_LOG.info("GroupMessageWorker add push queue message:" + pushMsg.toString());
 			
 			///保存到mysql
 			groupMessageDao.add(model);
