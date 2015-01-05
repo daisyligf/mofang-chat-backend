@@ -11,6 +11,7 @@ import com.mofang.chat.business.redis.PostReplyNotifyRedis;
 import com.mofang.chat.business.redis.PushQueueRedis;
 import com.mofang.chat.business.redis.impl.PostReplyNotifyRedisImpl;
 import com.mofang.chat.business.redis.impl.PushQueueRedisImpl;
+import com.mofang.chat.business.sysconf.common.PostReplyNotifyStatus;
 import com.mofang.chat.business.sysconf.common.PushDataType;
 
 public class PostReplyNotifyWorker implements JobWorker
@@ -35,6 +36,7 @@ public class PostReplyNotifyWorker implements JobWorker
 		try
 		{
 			///保存到redis
+			model.setStatus(PostReplyNotifyStatus.UNREAD);
 			postReplyNotifyRedis.save(model);
 			
 			///构建push消息

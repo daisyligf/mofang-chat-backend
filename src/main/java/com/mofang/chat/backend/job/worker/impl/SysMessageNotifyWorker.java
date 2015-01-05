@@ -12,6 +12,7 @@ import com.mofang.chat.business.redis.SysMessageNotifyRedis;
 import com.mofang.chat.business.redis.impl.PushQueueRedisImpl;
 import com.mofang.chat.business.redis.impl.SysMessageNotifyRedisImpl;
 import com.mofang.chat.business.sysconf.common.PushDataType;
+import com.mofang.chat.business.sysconf.common.SysMessageNotifyStatus;
 
 /**
  * 
@@ -40,6 +41,7 @@ public class SysMessageNotifyWorker implements JobWorker
 		try
 		{
 			///保存到redis
+			model.setStatus(SysMessageNotifyStatus.UNREAD);
 			sysMessageNotifyRedis.save(model);
 			
 			///构建push消息
