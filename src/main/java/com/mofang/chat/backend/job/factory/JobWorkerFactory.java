@@ -3,6 +3,7 @@ package com.mofang.chat.backend.job.factory;
 import org.json.JSONObject;
 
 import com.mofang.chat.backend.job.worker.JobWorker;
+import com.mofang.chat.backend.job.worker.impl.FeedRecommendNotifyWorker;
 import com.mofang.chat.backend.job.worker.impl.FriendMessageWorker;
 import com.mofang.chat.backend.job.worker.impl.GroupMessageWorker;
 import com.mofang.chat.backend.job.worker.impl.PostReplyNotifyWorker;
@@ -44,6 +45,9 @@ public class JobWorkerFactory
 				break;
 			case WriteDataType.SYS_MESSAGE_NOTIFY:
 				worker = new SysMessageNotifyWorker(json);
+				break;
+			case WriteDataType.FEED_RECOMMEND:
+				worker = new FeedRecommendNotifyWorker(json);
 				break;
 		}
 		return worker;
